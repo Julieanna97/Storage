@@ -220,7 +220,7 @@ bool Storage::swap(int i, int j)
     return true;
 
 }
-
+// Function to print the nodes in linked list
 void Storage::printList()
 {
     Node *temp = head;
@@ -246,6 +246,7 @@ void Storage::printList()
     cout << " -> None" << endl;
 }
 
+// Main function for execution
 int main()
 {
     // create an instance (object) of a class
