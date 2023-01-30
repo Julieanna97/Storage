@@ -142,7 +142,10 @@ if __name__ == '__main__':
     s.pop()
     print("Remaining storage values: ")
     print(s)
-
+    
+    # Swap nodes at index 1 and 2. 
+    # Must contain 2 index position in the parameter.
+    # Any value can be inserted as long as it exists.
     s.swap(1, 2)
     print("After swapping: ")
     print(s)
