@@ -51,12 +51,12 @@ class Storage:
     # Function that returns the top of element in a stack
     def peek(self):
         new_node = self.head
-        if self.head is None:
-            print("Peeking from an empty stack")
-            return None
+        if self.isempty():
+            raise Exception("Peeking from an empty stack")
+            return False
         else:
             print(f"Top element is {new_node.data}")
-            return new_node.data
+            return new_node.next.data
 
     # Checks if stack is empty
     def isempty(self):
@@ -144,7 +144,6 @@ if __name__ == '__main__':
     print("Before swapping: ")
     print(s)
 
-    s.swap(1, 2)
     print("After swapping: ")
     # swapping nodes at 0 & 2
     s.swap(0, 3)

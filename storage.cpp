@@ -117,15 +117,17 @@ void Storage::push(int data)
 // Function to remove a key from the beginning
 bool Storage::pop(int &data)
 {
-    if(head == NULL)
+    Node *newNode = head;
+
+    if(newNode == NULL)
     {
-        cout << "List is empty." << endl;
+        cout << "Stack is empty." << endl;
         return false;
     }
     else
     {
-        cout << "The popped element is " << head->data << endl;
-        head = head->next;
+        cout << "The popped element is " << newNode->data << endl;
+        head = newNode->next;
         return true;
     }
 }
