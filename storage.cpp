@@ -39,8 +39,6 @@ public:
         head = NULL;
     }
     
-    /* Linked list functions */
-
     /** Create a Node to hold the data, then put it at the head of the list.
      * @param data The data for the new node
     */
