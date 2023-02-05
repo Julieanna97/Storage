@@ -1,6 +1,7 @@
-# Represent a node of singly linked list in Python3
+import sys
+# Represent a stack list in Python3
 class Node:
-    # create nodes of linked list
+    # create nodes of stack
     # constructor using data
     def __init__(self, data):
         self.data = data
@@ -21,27 +22,29 @@ class Storage:
     # adds data to the end of the stack
     def push(self, data):
         new_node = Node(data)
+
+        if(not new_node):
+            print("Stack overflow!!!")
+            sys.exit(0);
         
         if self.head is None:
             self.head = new_node
         else:
-            temp = self.head
-            while temp.next is not None:
-                temp = temp.next
-            temp.next = new_node
+            new_node.next = self.head
+            self.head = new_node
 
     # Function to remove the first element/current head (start of the stack)
     def pop(self):
         if self.head is None:
             print("List is empty")
-            return None
+            return False
         else:
             # Removes the current head node
             # makes the new value the new head
-            temp = self.head
-            self.head = self.head.next
-            result = temp.data
+            result = self.head.data
             print(f"Popped value is: {result}")
+            self.head = self.head.next
+            return True
 
         return result
     
@@ -49,20 +52,20 @@ class Storage:
     def peek(self):
         new_node = self.head
         if self.head is None:
-            return False
+            print("Peeking from an empty stack")
+            return None
         else:
             print(f"Top element is {new_node.data}")
-            new_node = new_node.next
-            return True
+            return new_node.data
 
     # Checks if stack is empty
     def isempty(self):
         if self.head is None:
-            print("List is empty")
-            return True;
+            print("Stack is empty")
+            return True
         else:
-            print("List is not empty")
-            return False;
+            print("Stack is not empty")
+            return False
     
     # Function to swap the given two nodes
     def swap(self, i, j):
@@ -78,7 +81,7 @@ class Storage:
             temp = temp.next
         
         # check if the swap positions are valid
-        if(i < 1 or i > count or j < 1 or j > count):
+        if(i < 0 or i > count or j < 0 or j > count):
             return i, j
         
         p1 = self.head
@@ -87,12 +90,11 @@ class Storage:
         # checks if storage is empty
         if(p1 and p2 is None):
             print("Swapping is not possible")
-            return False
 
         # traverse to the nodes where given values to be swapped
-        for i in range(1, i):
+        for i in range(0, i):
             p1 = p1.next
-        for i in range(1, j):
+        for i in range(0, j):
             p2 = p2.next
         
         # swap the values of two nodes
@@ -100,18 +102,16 @@ class Storage:
         p1.data = p2.data
         p2.data = val
 
-        return True
-
     # prints out the stack
     def __str__(self):
         node = self.head
         my_str = ""
+        my_str += "None -> "
 
         while node is not None:
             my_str += f"{node.data} -> "
             node = node.next
 
-        my_str += "None"
         return my_str
 
 # Driver code
@@ -130,19 +130,27 @@ if __name__ == '__main__':
     # Print top element of stack
     s.peek()
 
-    # Delete top element of stack
+    # Removes the top node
     s.pop()
-
-    print("Result after removing the first element: ")
     print(s)
-
-    # Check if stack is empty or not
+    s.pop()
+    print(s)
+    
+    # checks if the stack is empty
     s.isempty()
-    s.peek()
-    s.pop()
-    print("Remaining storage values: ")
+
+    s.push(5)
+    s.push(12)
+    print("Before swapping: ")
+    print(s)
+    print("After swapping: ")
+    # swapping nodes at 0 & 2
+    s.swap(0, 3)
     print(s)
 
-    s.swap(1, 2)
-    print("After swapping: ")
+    # prints the top node in the stack
+    s.peek()
     print(s)
+    s.push(34)
+    print(s)
+    s.peek()

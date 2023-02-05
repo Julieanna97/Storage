@@ -77,7 +77,7 @@ public:
     
 
    /**
-    * @brief Prints a given linked list
+    * @brief Prints a given stack
     * 
     */
    void printList();
@@ -101,26 +101,23 @@ void Storage::push(int data)
     }
 
     // checks if storage is empty
+    // and sets the new value to given push() parameter
     if(head == NULL)
     {
         head = newNode;
     }
     else
     {
-        // new node will be added after head
+        // next new node will be assigned as head like stack
+        // last-in first-out (LIFO)
         // that head will point to new node
-        Node *temp = head;
-        while(temp->next != NULL)
-        {
-            temp = temp->next;
-        }
-        // next node will become new node of the storage
-        temp->next = newNode;
+        newNode->next = head;
+        head = newNode;
     }
 }
 
 // Function to remove a key from the beginning
-bool Storage::pop(int &data) // remove node at the beginning
+bool Storage::pop(int &data)
 {
     if(head == NULL)
     {
@@ -129,10 +126,8 @@ bool Storage::pop(int &data) // remove node at the beginning
     }
     else
     {
-        Node *temp = head;
+        cout << "The popped element is " << head->data << endl;
         head = head->next;
-        cout << "Popped value is: " << temp->data << endl;
-        delete temp;
         return true;
     }
 }
@@ -150,7 +145,6 @@ bool Storage::peek(int &data)
     {
         // if stack is not empty, return the top element
         cout << "Top element is " << newNode->data << endl;
-        newNode = newNode->next;
         return true;
     }
 }
@@ -162,13 +156,13 @@ bool Storage::isEmpty()
     // there are no elements in the storage
     if(head == NULL)
     {
-        cout << "List is empty" << endl;
+        cout << "Stack is empty" << endl;
         return true;
     }
     else
     {
         // if stack is filled
-        cout << "List is not empty" << endl;
+        cout << "Stack is not empty" << endl;
         return false;
     }
 
@@ -203,11 +197,11 @@ bool Storage::swap(int i, int j)
     }
 
     // traverse to the nodes where given values to be swapped
-    for(int k = 1; k < i; k++)
+    for(int k = 0; k < i; k++)
     {
         p1 = p1->next;
     }
-    for(int l = 1; l < j; l++)
+    for(int l = 0; l < j; l++)
     {
         p2 = p2->next;
     }
@@ -225,35 +219,34 @@ void Storage::printList()
 {
     Node *temp = head;
 
-    // Check for empty list.
     if(head == NULL)
     {
-        cerr << "List empty" << endl;
-        return;
+        cerr << "Stack is empty" << endl;
     }
-
-    // Traverse the list
-    while(temp != NULL)
+    else
     {
-        cout << temp->data;
-        temp = temp->next;
-        if(temp != NULL)
+        // Traverse the list
+        cout << "Stack elements are: ";
+        cout << "None -> ";
+        while(temp != NULL)
         {
-            cout << " -> ";
+            cout << temp->data << " -> ";
+            temp = temp->next;
         }
     }
+    cout << endl;
 
-    cout << " -> None" << endl;
 }
 
 int main()
 {
     // create an instance (object) of a class
     Storage *s = new Storage();
-    // stores the specific index position of list in peek() function
-    int peek;
+    int pop = 0, peek = 0;
 
+    // appends values to the stack
     s->push(1);
+    // prints the stack
     s->printList();
     s->push(2);
     s->printList();
@@ -263,18 +256,27 @@ int main()
     s->printList();
     s->push(5);
     s->printList();
-
+    // checks if the storage is empty or not
     s->isEmpty();
-    s->peek(peek);
-    int pop;
+    // removes the node from the top
     s->pop(pop);
-    cout << "Result after removing the first element: " << endl;
+    s->printList();
+    s->pop(pop);
+    s->printList();
+    s->push(10);
+    s->printList();
+    // prints the top node in the stack
+    s->peek(peek);
+    s->push(19);
     s->printList();
     s->peek(peek);
-    s->push(5);
+    s->pop(pop);
     s->printList();
-    s->swap(1, 5);
-    cout << "After swapping between 2 nodes: " << endl;
+    cout << "\nBefore swapping: " << "\n";
+    s->printList();
+    // swapping nodes at index 0 & 2
+    s->swap(0, 2);
+    cout << "\nAfter swapping: " << endl;
     s->printList();
 
     return 0;
