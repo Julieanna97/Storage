@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// Represent a node of singly linked list in C++
+// Represent a stack list in C++
 class Node
 {
 public:
