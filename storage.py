@@ -143,6 +143,8 @@ if __name__ == '__main__':
     s.push(12)
     print("Before swapping: ")
     print(s)
+
+    s.swap(1, 2)
     print("After swapping: ")
     # swapping nodes at 0 & 2
     s.swap(0, 3)
