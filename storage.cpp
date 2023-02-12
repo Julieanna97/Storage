@@ -117,17 +117,21 @@ void Storage::push(int data)
 // Function to remove a key from the beginning
 bool Storage::pop(int &data)
 {
-    Node *newNode = head;
 
-    if(newNode == NULL)
+    if(head == NULL)
     {
         cout << "Stack is empty." << endl;
         return false;
     }
     else
     {
-        cout << "The popped element is " << newNode->data << endl;
-        head = newNode->next;
+        cout << "The popped element is " << head->data << endl;
+        // remove the top item from the stack
+        // using temporary pointer
+        Node *ptr = head;
+        head = head->next;
+        delete(ptr);
+
         return true;
     }
 }
@@ -136,8 +140,9 @@ bool Storage::pop(int &data)
 bool Storage::peek(int &data)
 {
     Node *newNode = head;
+
     // if stack is empty
-    if(head == NULL)
+    if(newNode == NULL)
     {
         return false;
     }

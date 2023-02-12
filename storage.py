@@ -7,9 +7,10 @@ class Node:
         self.data = data
         self.next = None
 
-    # return string representation of Node class
+    # returns a string representation of the data
     def __str__(self):
-        return self.data
+        return str(self.data)
+
 
 class Storage:
 
@@ -35,28 +36,25 @@ class Storage:
 
     # Function to remove the first element/current head (start of the stack)
     def pop(self):
-        if self.head is None:
-            print("List is empty")
-            return False
+        if(self.head == None):
+            return 'Stack is empty'
         else:
             # Removes the current head node
             # makes the new value the new head
             result = self.head.data
-            print(f"Popped value is: {result}")
             self.head = self.head.next
-            return True
-
-        return result
+            print(f"Popped value is: {result}")
+            return result
     
     # Function that returns the top of element in a stack
     def peek(self):
-        new_node = self.head
-        if self.isempty():
+        if (self.head == None):
             raise Exception("Peeking from an empty stack")
-            return False
+            return None
         else:
+            new_node = self.head
             print(f"Top element is {new_node.data}")
-            return new_node.next.data
+            return new_node.data
 
     # Checks if stack is empty
     def isempty(self):
@@ -92,9 +90,9 @@ class Storage:
             print("Swapping is not possible")
 
         # traverse to the nodes where given values to be swapped
-        for i in range(0, i):
+        for i in range(1, i):
             p1 = p1.next
-        for i in range(0, j):
+        for i in range(1, j):
             p2 = p2.next
         
         # swap the values of two nodes
@@ -120,38 +118,21 @@ if __name__ == '__main__':
 
     # Add new elements in the stack
     s.push(100)
+    print(s)
     s.push(3)
+    print(s)
     s.push(19)
+    print(s)
     s.push(15)
-
-    # Display stack elements
     print(s)
-
-    # Print top element of stack
-    s.peek()
-
-    # Removes the top node
-    s.pop()
+    s.push(10)
     print(s)
-    s.pop()
+    s.push(95)
+
     print(s)
-    
-    # checks if the stack is empty
     s.isempty()
-
-    s.push(5)
-    s.push(12)
-    print("Before swapping: ")
-    print(s)
-
-    print("After swapping: ")
-    # swapping nodes at 0 & 2
-    s.swap(0, 3)
-    print(s)
-
-    # prints the top node in the stack
-    s.peek()
-    print(s)
-    s.push(34)
+    s.swap(1, 6)
     print(s)
     s.peek()
+    s.pop()
+    print(s)
